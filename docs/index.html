@@ -2,6 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!--
+        Thanks for taking a look at the source of this website.
+
+        You'll find all CSS and JS dependencies inline, with the exception of
+        the font files.
+
+        If you happen to spot an issue, spelling mistake, or other opportunity
+        for improvement, please send a PR to this file at
+        https://github.com/leebyron/4000/blob/main/docs/index.html
+    -->
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
@@ -297,11 +307,13 @@
     </style>
     <script>
       addEventListener('DOMContentLoaded', () => {
+        // Constants
         const WEEK_MS = 1000 * 3600 * 24 * 7
         const MIN_AGE = 1
         const MAX_AGE = 7000
         const DISSOLVE_SPEED = 65
 
+        // $() - fast get by id
         const ID_CACHE = {}
         function $(id) {
           return ID_CACHE[id] ?? (ID_CACHE[id] = document.getElementById(id))
@@ -319,6 +331,8 @@
           return lerp(from, to, clamp((n - nFrom) / (nTo - nFrom)))
         }
 
+        // Scroll observer which consumes scroll events only when relevant
+        // elements are within the viewport
         let docHeight
         function observeScroll(elem, fn) {
           if (!docHeight) {
@@ -354,11 +368,13 @@
           return new IntersectionObserver(onIntersect).observe(elem)
         }
 
+        // Reset the PRNG to a known point
         let _r = 0
         function seedRandom(a = 0) {
           _r = 0 | a
         }
 
+        // Mulberry32 PRNG is cute, minimal, deterministic, fast.
         function random() {
           _r = 0 | (_r + 0x6d2b79f5)
           let t = Math.imul(_r ^ (_r >>> 15), 1 | _r)
@@ -366,6 +382,7 @@
           return ((t ^ (t >>> 14)) >>> 0) / 4294967296
         }
 
+        // Generates a suffled list of size `length` of numbers (sized >= 0 < length)
         function randomIndices(length, power) {
           return new Array(length).fill().map((v, i, a) => {
             const j = 0 | (i + Math.pow(random(), power) * (length - i))
@@ -375,6 +392,7 @@
           })
         }
 
+        // Inverts values to be keys, keys to be values
         function flip(arr) {
           const copy = arr.slice()
           for (let i = 0; i < arr.length; i++) {
@@ -418,6 +436,7 @@
           'ninety',
         ]
 
+        // e.g. 123 -> one hundred twenty-three
         function numToEnglish(num) {
           const thousands = Math.floor(num / 1000)
           const hundreds = Math.floor((num % 1000) / 100)
@@ -439,14 +458,20 @@
           return parts.filter(x => x).join(' ')
         }
 
+        // Runtime state
         let birthday,
           isInvalidAge,
-          rect,
-          density,
-          width,
-          height,
           livedWeeks,
           totalWeeks,
+          raf,
+          // Dimensions
+          rect,
+          width,
+          height,
+          cols,
+          rows,
+          size,
+          // Indicies arrays
           shuffledWeeksLinear,
           shuffledWeeks,
           shuffledWeeksFlipped,
@@ -454,10 +479,7 @@
           shuffledLivedWeeksFlipped,
           shuffledWeeksFaded,
           shuffledWeeksFadedFlipped,
-          cols,
-          rows,
-          size,
-          raf,
+          // Draw progress
           currentPos = 0,
           targetPos = 0,
           drawnToPos = 0,
@@ -471,6 +493,7 @@
         const canvasElem = $('frame').firstElementChild
         const ctx = canvasElem.getContext('2d')
 
+        // Initiate to today
         $('birthday').value = new Date().toISOString().split('T')[0]
 
         seedRandom(10)
@@ -508,13 +531,14 @@
           draw()
         })
 
+        setup()
         addEventListener('resize', setup)
         $('birthday').addEventListener('change', () => {
           setup()
           $('cta').style.opacity = isInvalidAge ? 0 : 1
         })
-        setup()
 
+        // Clears and initializes state
         function setup() {
           birthday = Date.parse($('birthday').value)
           livedWeeks = Math.floor((Date.now() - birthday) / WEEK_MS)
