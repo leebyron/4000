@@ -5,12 +5,23 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
-    <meta property="og:title" content="Four thousand weeks" />
+    <meta property="og:title" content="Four Thousand Weeks" />
     <meta
       property="og:description"
       content="A tribute to the book by Oliver Burkeman, an exploration of time management in the face of human finitude, and addressing the anxiety of “getting everything done.”" />
+    <meta property="og:image" content="social.png" />
+    <meta
+      property="og:image:secure_url"
+      content="https://leebyron.com/4000/social.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="418" />
+    <meta
+      property="og:image:alt"
+      content="The average human life is only four thousand weeks" />
+    <meta property="og:url" content="https://leebyron.com/4000/" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@leeb" />
+    <meta name="twitter:creator" content="@leeb" />
     <base target="_blank" />
     <title>Four Thousand Weeks</title>
     <style>
@@ -25,6 +36,7 @@
         font-style: italic;
       }
       :root {
+        --bg-color: #f2ebdb;
         --mark-color: #ffff00aa;
         --baseline: clamp(16px, 5vmin, 32px);
         --text-font-size: var(--baseline);
@@ -52,7 +64,7 @@
       }
       body {
         margin: 0;
-        background: #f2ebdb;
+        background: var(--bg-color);
       }
       a {
         text-decoration-thickness: 0.5px;
@@ -95,15 +107,6 @@
       em {
         font-style: italic;
         font-variation-settings: 'wght' 500, 'wdth' 50, 'opsz' 22;
-      }
-      strong {
-        font-weight: normal;
-        font-variation-settings: 'wght' 650, 'wdth' 80, 'opsz' 30;
-      }
-      strong em,
-      em strong {
-        font-style: italic;
-        font-variation-settings: 'wght' 700, 'wdth' 80, 'opsz' 22;
       }
       header {
         min-height: calc(100vh - 4rem);
@@ -268,7 +271,7 @@
         background: #ffffcc;
       }
       #calendar .faded {
-        background: #f2ebdb;
+        background: var(--bg-color);
         color: #00000066;
       }
       .fullscreen {
@@ -324,13 +327,16 @@
               docHeight = $('frame').getBoundingClientRect().height
             })
           }
+          let isListening = false
           function onIntersect(entries) {
             for (const entry of entries) {
-              if (entry.isIntersecting) {
+              if (entry.isIntersecting && !isListening) {
+                isListening = true
                 handleCallback()
                 addEventListener('scroll', handleCallback)
                 addEventListener('resize', handleCallback)
-              } else {
+              } else if (!entry.isIntersecting && isListening) {
+                isListening = false
                 removeEventListener('scroll', handleCallback)
                 removeEventListener('resize', handleCallback)
               }
@@ -515,11 +521,12 @@
           isInvalidAge =
             isNaN(livedWeeks) || livedWeeks < MIN_AGE || livedWeeks > MAX_AGE
 
+          const sectionsDisplay = isInvalidAge ? 'none' : null
           for (const section of [
             ...document.getElementsByTagName('section'),
             ...document.getElementsByTagName('footer'),
           ]) {
-            section.style.display = isInvalidAge ? 'none' : null
+            section.style.display = sectionsDisplay
           }
 
           if (isInvalidAge) {
@@ -882,7 +889,7 @@
       <figure>
         <blockquote>
           Which of us truly lives on twenty-four hours a day? Which of us is not
-          saying: ‘I shall alter that when I have a little more time?’ We never
+          saying: “I shall alter that when I have a little more time?” We never
           shall have any more time. We have, and we have always had, all the
           time there is.
         </blockquote>
@@ -1192,8 +1199,8 @@
         by <mark>Claus Eggers</mark>
       </p>
       <p>
-        Made and <a href="https://github.com/leebyron/4000">open-sourced</a>
-        by <a href="https://leebyron.com"><mark>Lee Byron</mark></a>
+        Made and <a href="https://github.com/leebyron/4000">open-sourced</a> by
+        <a href="https://leebyron.com"><mark>Lee Byron</mark></a>
         with &hearts; in San Francisco.
       </p>
       <aside class="endMark">✌︎</aside>
