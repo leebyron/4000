@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
+    <meta property="og:title" content="Four thousand weeks" />
+    <meta
+      property="og:description"
+      content="A tribute to the book by Oliver Burkeman, an exploration of time management in the face of human finitude, and addressing the anxiety of “getting everything done.”" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@leeb" />
+    <base target="_blank" />
+    <title>Four Thousand Weeks</title>
+    <style>
+      @font-face {
+        font-family: 'Playfair';
+        src: url('PlayfairRomanVF.woff2') format('woff2');
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Playfair';
+        src: url('PlayfairItalicVF.woff2') format('woff2');
+        font-style: italic;
+      }
+      :root {
+        --mark-color: #ffff00aa;
+        --baseline: clamp(16px, 5vmin, 32px);
+        --text-font-size: var(--baseline);
+        --text-letter-spacing: calc(var(--baseline) * -0.02);
+        --text-line-height: calc(var(--baseline) * 1.2);
+        --header-font-size: calc(var(--baseline) * 2.6);
+        --header-letter-spacing: calc(var(--baseline) * -0.12);
+        --header-line-height: calc(var(--baseline) * 2.4);
+        --section-width: min(100vmin - 0.5em, 800px);
+
+        color: #000000e9;
+        text-rendering: geometricPrecision;
+        hanging-punctuation: first allow-end last;
+        text-underline-position: from-font;
+        font-kerning: normal;
+        font-family: 'Playfair', 'Times New Roman', Times, serif;
+        font-size: var(--text-font-size);
+        font-variation-settings: 'wght' 400, 'wdth' 50, 'opsz' 30;
+        font-optical-sizing: none;
+        font-feature-settings: 'kern' 1, 'rlig' 1, 'dlig' 0, 'liga' 1, 'calt' 1,
+          'ss01' 0, 'ss02' 0, 'ss03' 0, 'ss04' 0, 'ss05' 0, 'ss06' 0, 'ss07' 0,
+          'ss08' 0, 'ss09' 0, 'ss10' 0, 'ss11' 0, 'ss12' 0, 'ss13' 0;
+        letter-spacing: var(--text-letter-spacing);
+        line-height: var(--text-line-height);
+      }
+      body {
+        margin: 0;
+        background: #f2ebdb;
+      }
+      a {
+        text-decoration-thickness: 0.5px;
+        text-decoration-color: #000000aa;
+        transition: text-decoration-color 0.3s ease-in-out;
+        color: inherit;
+      }
+      a:hover,
+      a:focus {
+        text-decoration-thickness: 1px;
+        text-decoration-color: #0974e0;
+        color: initial;
+      }
+      h1,
+      h2 {
+        font-size: var(--header-font-size);
+        font-weight: inherit;
+        font-variation-settings: 'wght' 400, 'wdth' 50, 'opsz' 70;
+        letter-spacing: var(--header-letter-spacing);
+        line-height: var(--header-line-height);
+        margin: 1rem auto;
+      }
+      h3 {
+        font-size: inherit;
+        font-weight: normal;
+        font-variation-settings: 'wght' 650, 'wdth' 80, 'opsz' 30;
+        margin: 1rem auto;
+      }
+      small {
+        display: block;
+        font-size: max(14px, var(--text-font-size) * 0.5);
+        line-height: 1.2;
+      }
+      p {
+        margin: 1rem auto;
+      }
+      cite {
+        font-style: initial;
+      }
+      em {
+        font-style: italic;
+        font-variation-settings: 'wght' 500, 'wdth' 50, 'opsz' 22;
+      }
+      strong {
+        font-weight: normal;
+        font-variation-settings: 'wght' 650, 'wdth' 80, 'opsz' 30;
+      }
+      strong em,
+      em strong {
+        font-style: italic;
+        font-variation-settings: 'wght' 700, 'wdth' 80, 'opsz' 22;
+      }
+      header {
+        min-height: calc(100vh - 4rem);
+        min-height: calc(100svh - 4rem);
+        margin: 2rem auto 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      header > :last-child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      section {
+        min-height: calc(100vh - 6rem);
+        margin: 4rem auto 2rem;
+      }
+      footer {
+        margin: 4rem auto;
+      }
+      header,
+      section,
+      footer {
+        padding: 0 0.75rem;
+        width: var(--section-width);
+        box-sizing: border-box;
+      }
+      input {
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+        padding: 0;
+        border: none;
+        background: #ffffff99;
+      }
+      mark {
+        background: linear-gradient(
+          0,
+          transparent 21%,
+          var(--mark-color) 21%,
+          var(--mark-color) 57%,
+          transparent 57%
+        );
+      }
+      ::selection {
+        background-color: var(--mark-color);
+      }
+      figure {
+        margin: 1rem;
+      }
+      blockquote {
+        margin: 0;
+        position: relative;
+      }
+      blockquote::before {
+        content: '“';
+        font-size: 200%;
+        margin: 0.12em 0.04em;
+        position: absolute;
+        right: 100%;
+        font-variation-settings: 'wght' 400, 'wdth' 50, 'opsz' 70;
+      }
+      figcaption::before {
+        content: '—';
+      }
+      hr {
+        border: none;
+        border-bottom: solid 1px #00000066;
+        margin: 4rem 2rem;
+      }
+      #frame {
+        pointer-events: none;
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        width: 100lvw;
+        height: 100vh;
+        height: 100lvh;
+      }
+      #cta {
+        opacity: 0;
+        user-select: none;
+        pointer-events: none;
+        transition: opacity 1s ease-out;
+      }
+      #aWeek {
+        height: calc(250vh - 12rem);
+        width: 100vw;
+        padding: 0;
+      }
+      #aWeek > div:first-child {
+        position: sticky;
+        top: 20vh;
+        height: 80vh;
+        pointer-events: none;
+      }
+      #aWeek aside {
+        position: absolute;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        height: 100vh;
+      }
+      #aWeek h2,
+      #aWeek aside > div {
+        box-sizing: border-box;
+        width: var(--section-width);
+        padding: 0 0.75rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #calendar {
+        position: relative;
+        width: 7rem;
+        height: 8rem;
+        background: #ece2cb;
+        border: 1px black solid;
+        box-shadow: 0 0.25rem 0.33rem 0.08rem #00000012;
+        display: flex;
+        flex-direction: row-reverse;
+        perspective: 100vh;
+        perspective-origin: bottom;
+      }
+      #calendar > * {
+        user-select: none;
+      }
+      #calendar > div {
+        position: absolute;
+        width: 7rem;
+        height: 7rem;
+        bottom: 0;
+        border: 1px black solid;
+        border-top-style: dotted;
+        margin: -1px;
+        background: #f8f5ec;
+        transform-origin: top;
+        transform: rotate(0) translateY(0);
+        transition: transform 0.1s;
+      }
+      #calendar > div:before {
+        content: attr(weekday);
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        font-variation-settings: 'wght' 900, 'wdth' 150, 'opsz' 40;
+      }
+      #calendar > div:after {
+        content: attr(date);
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 200%;
+        font-variation-settings: 'wght' 400, 'wdth' 150, 'opsz' 80, 'lnum' 1;
+      }
+      #calendar .weekend {
+        background: #ffffcc;
+      }
+      #calendar .faded {
+        background: #f2ebdb;
+        color: #00000066;
+      }
+      .fullscreen {
+        min-height: calc(250vh - 16rem);
+      }
+      .fullscreen > div:first-child {
+        height: 150vh;
+        margin: 1rem 0;
+      }
+      .fullscreen > div:first-child > h2 {
+        margin: 0;
+        position: sticky;
+        top: calc(50vh - 4rem);
+      }
+      .secnum {
+        font-feature-settings: 'lnum' 1;
+        font-variation-settings: 'wght' 900, 'wdth' 150, 'opsz' 50;
+      }
+      .endMark {
+        margin: 4rem auto;
+        text-align: center;
+      }
+    </style>
+    <script>
+      addEventListener('DOMContentLoaded', () => {
+        const WEEK_MS = 1000 * 3600 * 24 * 7
+        const MIN_AGE = 1
+        const MAX_AGE = 7000
+        const DISSOLVE_SPEED = 65
+
+        const ID_CACHE = {}
+        function $(id) {
+          return ID_CACHE[id] ?? (ID_CACHE[id] = document.getElementById(id))
+        }
+
+        function clamp(n, min = 0, max = 1) {
+          return Math.max(min, Math.min(max, n))
+        }
+
+        function lerp(from, to, n) {
+          return from + (to - from) * n
+        }
+
+        function map(n, nFrom, nTo, from = 0, to = 1) {
+          return lerp(from, to, clamp((n - nFrom) / (nTo - nFrom)))
+        }
+
+        let docHeight
+        function observeScroll(elem, fn) {
+          if (!docHeight) {
+            docHeight = $('frame').getBoundingClientRect().height
+            addEventListener('resize', () => {
+              docHeight = $('frame').getBoundingClientRect().height
+            })
+          }
+          function onIntersect(entries) {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                handleCallback()
+                addEventListener('scroll', handleCallback)
+                addEventListener('resize', handleCallback)
+              } else {
+                removeEventListener('scroll', handleCallback)
+                removeEventListener('resize', handleCallback)
+              }
+            }
+          }
+          let raf
+          function handleCallback() {
+            if (!raf) {
+              raf = requestAnimationFrame(() => {
+                fn((docHeight - elem.getBoundingClientRect().y) / docHeight)
+                raf = null
+              })
+            }
+          }
+          return new IntersectionObserver(onIntersect).observe(elem)
+        }
+
+        let _r = 0
+        function seedRandom(a = 0) {
+          _r = 0 | a
+        }
+
+        function random() {
+          _r = 0 | (_r + 0x6d2b79f5)
+          let t = Math.imul(_r ^ (_r >>> 15), 1 | _r)
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+        }
+
+        function randomIndices(length, power) {
+          return new Array(length).fill().map((v, i, a) => {
+            const j = 0 | (i + Math.pow(random(), power) * (length - i))
+            const r = a[j] ?? j
+            a[j] = v ?? i
+            return r
+          })
+        }
+
+        function flip(arr) {
+          const copy = arr.slice()
+          for (let i = 0; i < arr.length; i++) {
+            copy[arr[i]] = i
+          }
+          return copy
+        }
+
+        const ONES = [
+          ,
+          'one',
+          'two',
+          'three',
+          'four',
+          'five',
+          'six',
+          'seven',
+          'eight',
+          'nine',
+          'ten',
+          'eleven',
+          'twelve',
+          'thirteen',
+          'fourteen',
+          'fifteen',
+          'sixteen',
+          'seventeen',
+          'eighteen',
+          'nineteen',
+        ]
+        const TENS = [
+          ,
+          'ten',
+          'twenty',
+          'thirty',
+          'forty',
+          'fifty',
+          'sixty',
+          'seventy',
+          'eighty',
+          'ninety',
+        ]
+
+        function numToEnglish(num) {
+          const thousands = Math.floor(num / 1000)
+          const hundreds = Math.floor((num % 1000) / 100)
+          const tens = Math.floor((num % 100) / 10)
+          const ones = num % 10
+
+          const parts = [
+            !thousands ? null : `${ONES[thousands]} thousand`,
+            !hundreds ? null : `${ONES[hundreds]} hundred`,
+            !tens && !ones
+              ? null
+              : !ones
+              ? TENS[tens]
+              : tens >= 2 && ones
+              ? `${TENS[tens]}-${ONES[ones]}`
+              : ONES[tens < 2 ? tens * 10 + ones : ones],
+          ]
+
+          return parts.filter(x => x).join(' ')
+        }
+
+        let birthday,
+          isInvalidAge,
+          rect,
+          density,
+          width,
+          height,
+          livedWeeks,
+          totalWeeks,
+          shuffledWeeksLinear,
+          shuffledWeeks,
+          shuffledWeeksFlipped,
+          shuffledLivedWeeks,
+          shuffledLivedWeeksFlipped,
+          shuffledWeeksFaded,
+          shuffledWeeksFadedFlipped,
+          cols,
+          rows,
+          size,
+          raf,
+          currentPos = 0,
+          targetPos = 0,
+          drawnToPos = 0,
+          currentFill = 0,
+          targetFill = 0,
+          drawnToFill = 0,
+          currentFade = 0,
+          targetFade = 0,
+          drawnToFade = 0
+
+        const canvasElem = $('frame').firstElementChild
+        const ctx = canvasElem.getContext('2d')
+
+        $('birthday').value = new Date().toISOString().split('T')[0]
+
+        seedRandom(10)
+        const weekdayAngles = new Array(7)
+          .fill()
+          .map((_, i) =>
+            i === 6 ? 120 : (i % 2 ? 1 : -1) * lerp(20, 100, random())
+          )
+        const weekdayElems = [...$('calendar').children].reverse()
+
+        observeScroll($('aWeek'), proportion => {
+          for (let i = 0; i < 7; i++) {
+            const start = 0.69 + (i / 7) * 1.52
+            const end = start + 0.6
+            const t = map(proportion, start, end)
+            const tt = t * t
+            const angle = weekdayAngles[i]
+            weekdayElems[i].style.transform = `rotate(${
+              angle * tt
+            }deg) translate3d(0, ${130 * tt}vmax, ${100 * tt}vmin) rotateX(${
+              Math.abs(angle) * 0.5 * tt
+            }deg)`
+          }
+        })
+
+        observeScroll($('totalWeeks'), proportion => {
+          targetPos = 0 | map(proportion, 0.75, 1.65, 0, totalWeeks)
+          draw()
+        })
+
+        observeScroll($('livedWeeks'), proportion => {
+          targetFill = 0 | map(proportion, 0.6, 1.5, 0, livedWeeks)
+          targetFade = 0 | map(proportion, 1.8, 2.4, 0, totalWeeks)
+          canvasElem.style.opacity = map(proportion, 2, 3, 1, 0.15)
+          draw()
+        })
+
+        addEventListener('resize', setup)
+        $('birthday').addEventListener('change', () => {
+          setup()
+          $('cta').style.opacity = isInvalidAge ? 0 : 1
+        })
+        setup()
+
+        function setup() {
+          birthday = Date.parse($('birthday').value)
+          livedWeeks = Math.floor((Date.now() - birthday) / WEEK_MS)
+          isInvalidAge =
+            isNaN(livedWeeks) || livedWeeks < MIN_AGE || livedWeeks > MAX_AGE
+
+          for (const section of [
+            ...document.getElementsByTagName('section'),
+            ...document.getElementsByTagName('footer'),
+          ]) {
+            section.style.display = isInvalidAge ? 'none' : null
+          }
+
+          if (isInvalidAge) {
+            ctx.clearRect(0, 0, canvasElem.width, canvasElem.height)
+            return
+          }
+
+          rect = $('frame').getBoundingClientRect()
+          width = rect.width * devicePixelRatio
+          height = rect.height * devicePixelRatio
+
+          totalWeeks =
+            livedWeeks < 4000 ? 4000 : Math.ceil((livedWeeks + 1) / 500) * 500
+          cols = Math.round(Math.sqrt((totalWeeks * width) / height))
+          rows = Math.ceil(totalWeeks / cols)
+          size = Math.min(width / cols, height / rows)
+
+          if (shuffledWeeksLinear?.length !== totalWeeks) {
+            seedRandom(1)
+            shuffledWeeksLinear = randomIndices(totalWeeks, 1)
+          }
+
+          if (shuffledWeeks?.length !== totalWeeks) {
+            seedRandom(2)
+            shuffledWeeks = randomIndices(totalWeeks, 2)
+            shuffledWeeksFlipped = flip(shuffledWeeks)
+          }
+
+          if (shuffledLivedWeeks?.length !== livedWeeks) {
+            seedRandom(3)
+            shuffledLivedWeeks = randomIndices(livedWeeks, 4)
+            shuffledLivedWeeksFlipped = flip(shuffledLivedWeeks)
+          }
+
+          if (shuffledWeeksFaded?.length !== totalWeeks) {
+            seedRandom(4)
+            shuffledWeeksFaded = randomIndices(totalWeeks, 5).reverse()
+            shuffledWeeksFadedFlipped = flip(shuffledWeeksFaded)
+          }
+
+          canvasElem.width = cols * size
+          canvasElem.height = rows * size
+          const scaleX = rect.width / (cols * size)
+          const scaleY = rect.height / (rows * size)
+          canvasElem.style.transform = `scale(${scaleX}, ${scaleY})`
+
+          drawnToPos = 0
+          drawnToFill = 0
+          drawnToFade = 0
+          requestDraw()
+
+          $('weeksSoFar').innerText = numToEnglish(livedWeeks)
+          for (let i = 0; i < 5; i++) {
+            $(`${i}k`).style.display =
+              livedWeeks >= i * 1000 && (i == 4 || livedWeeks < (i + 1) * 1000)
+                ? 'block'
+                : 'none'
+          }
+        }
+
+        function requestDraw() {
+          cancelAnimationFrame(raf)
+          raf = requestAnimationFrame(draw)
+        }
+
+        function draw() {
+          currentPos =
+            currentPos < targetPos
+              ? Math.min(targetPos, currentPos + DISSOLVE_SPEED)
+              : Math.max(targetPos, currentPos - DISSOLVE_SPEED)
+          if (currentPos !== targetPos) {
+            requestDraw()
+          } else {
+            currentFill =
+              currentFill < targetFill
+                ? Math.min(targetFill, currentFill + DISSOLVE_SPEED)
+                : Math.max(targetFill, currentFill - DISSOLVE_SPEED)
+            if (currentFill !== targetFill) {
+              requestDraw()
+            }
+          }
+
+          currentFade =
+            currentFade < targetFade
+              ? Math.min(targetFade, currentFade + DISSOLVE_SPEED)
+              : Math.max(targetFade, currentFade - DISSOLVE_SPEED)
+          if (currentFade !== targetFade) {
+            requestDraw()
+          }
+
+          if (drawnToPos !== currentPos) {
+            const from = Math.min(drawnToPos, currentPos)
+            const to = Math.max(drawnToPos, currentPos)
+            drawnToPos = currentPos
+            for (let i = from; i < to; i++) {
+              const s = shuffledWeeks[i]
+              drawWeek(s)
+            }
+          }
+
+          if (drawnToFill !== currentFill) {
+            const from = Math.min(drawnToFill, currentFill)
+            const to = Math.max(drawnToFill, currentFill)
+            drawnToFill = currentFill
+            for (let i = from; i < to; i++) {
+              const s = shuffledLivedWeeks[i]
+              drawWeek(s)
+            }
+          }
+
+          if (drawnToFade !== currentFade) {
+            const from = Math.min(drawnToFade, currentFade)
+            const to = Math.max(drawnToFade, currentFade)
+            drawnToFade = currentFade
+            for (let i = from; i < to; i++) {
+              const s = shuffledWeeksFaded[i]
+              drawWeek(s)
+            }
+          }
+        }
+
+        function drawWeek(i) {
+          const col = i % cols
+          const row = (i - col) / cols
+          ctx.clearRect(col * size, row * size, size, size)
+          if (shuffledWeeksFlipped[i] >= currentPos) return
+          const drawAsLived =
+            i < livedWeeks && shuffledLivedWeeksFlipped[i] < currentFill
+          const drawAsFaded = shuffledWeeksFadedFlipped[i] < currentFade
+          ctx.beginPath()
+
+          const opacity = drawAsFaded
+            ? drawAsLived
+              ? [0.15, 0.24]
+              : [0.04, 0.1]
+            : drawAsLived
+            ? [0.22, 0.36]
+            : i >= 4000
+            ? [0.015, 0.025]
+            : [0.05, 0.1]
+
+          const color =
+            i >= 4000 ? '170,165,20' : drawAsLived ? '100,96,12' : '0,0,0'
+
+          ctx.fillStyle = `rgba(${color},${lerp(
+            opacity[0],
+            opacity[1],
+            shuffledWeeksLinear[i] / totalWeeks
+          )})`
+          ctx.arc(
+            (col + 0.5) * size,
+            (row + 0.5) * size,
+            (size / 2) * 0.95,
+            0,
+            Math.PI * 2
+          )
+          ctx.fill()
+        }
+      })
+    </script>
+  </head>
+  <body>
+    <div id="frame">
+      <canvas></canvas>
+    </div>
+    <header>
+      <div>
+        <h1>
+          <mark>Four<br />Thousand<br />Weeks</mark>
+        </h1>
+        <p>
+          A tribute to
+          <a href="https://amzn.to/3GnJlR9">the book</a> by
+          <mark>Oliver Burkeman</mark>, an exploration of time management in the
+          face of human finitude, and addressing the anxiety of “getting
+          everything done.”
+        </p>
+        <p>
+          To begin, enter when were you born
+          <small>This site uses no cookies nor saves your information</small>
+        </p>
+      </div>
+      <div>
+        <input type="date" id="birthday" autocomplete="bday" />
+        <p id="cta">Scroll on...</p>
+      </div>
+    </header>
+
+    <section id="aWeek">
+      <div>
+        <h2>We live our lives<br />week by week</h2>
+        <aside aria-hidden="true">
+          <div>
+            <div id="calendar">
+              <div weekday="Mon" date="8" class="faded"></div>
+              <div weekday="Sun" date="7" class="weekend"></div>
+              <div weekday="Sat" date="6" class="weekend"></div>
+              <div weekday="Fri" date="5"></div>
+              <div weekday="Thu" date="4"></div>
+              <div weekday="Wed" date="3"></div>
+              <div weekday="Tue" date="2"></div>
+              <div weekday="Mon" date="1"></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <h2>Yet a week feels frustratingly limited</h2>
+      <p>
+        The pressure to be more productive and fit ever-increasing quantities of
+        activity into a stubbornly non-increasing quantity of time leads to
+        productivity anxiety, shriveled attention spans, and burn-out.
+      </p>
+    </section>
+
+    <section>
+      <h2>And there are alarmingly few of&nbsp;them</h2>
+      <p>
+        You would feel less anxious about wasting an evening doom-scrolling if
+        you had an infinite amount of them. Somehow either doing too much or too
+        little can create the sense of wasting time.
+      </p>
+      <p>
+        Despite all this activity we sense there are important and fulfilling
+        ways we could be spending our time, even if we can’t say exactly what
+        they are. Yet, we systematically spend our time doing other things to
+        get by instead.
+      </p>
+      <figure>
+        <blockquote>
+          I (like many others) felt a wrongness in the world. Life, I knew, was
+          supposed to be more joyful than this, more real, more meaningful. We
+          were not supposed to hate Mondays and live for the weekends and
+          holidays. We were not supposed to have to raise our hands to be
+          allowed to pee.
+        </blockquote>
+        <figcaption><mark>Charles Eisenstien</mark></figcaption>
+      </figure>
+    </section>
+
+    <section id="totalWeeks" class="fullscreen">
+      <div>
+        <h2>The average human life is only <mark>four thousand weeks</mark></h2>
+      </div>
+      <p>
+        Scientists estimate that life, in some form, will persist for another
+        1.5 billion years or more, until the intensifying heat of the sun
+        condemns the last organism to death.
+      </p>
+      <p>
+        But you? Assuming you live to be eighty, you’ll have had about four
+        thousand weeks. The rare few lucky enough to become a centenarian will
+        see only five thousand.
+      </p>
+      <p>That’s absurdly, terrifyingly, insultingly short.</p>
+    </section>
+
+    <section id="livedWeeks" class="fullscreen">
+      <div>
+        <h2>
+          You have lived <mark id="weeksSoFar"></mark> of them so&nbsp;far
+        </h2>
+      </div>
+      <p id="0k" style="display: none">
+        You likely have many more weeks ahead of you. The psychologist
+        <mark>Erik Erikson</mark> suggests that at this phase of life you focus
+        on the virtues of competence and fidelity. Allow yourself failures in
+        the spirit of discovering and developing your personal identity and
+        priorities so that your future weeks can be lived well with intention
+        and purpose.
+      </p>
+      <p id="1k" style="display: none">
+        That’s a significant amount of the weeks you’ll see. The psychologist
+        <mark>Erik Erikson</mark> suggests that at this phase of life you focus
+        on the virtue of love. Share yourself more intimately with others and
+        invest in happy relationships so that your future weeks can be lived
+        well with companionship and purpose.
+      </p>
+      <p id="2k" style="display: none">
+        That’s likely a majority of the weeks you’ll see. The psychologist
+        <mark>Erik Erikson</mark> suggests that at this phase of life you focus
+        on the virtue of care. Spend your weeks “making your mark” by
+        intentionally nurturing things that will outlast you, raising children,
+        mentoring others, becoming involved in your community and organizations,
+        and creating positive change that benefits others.
+      </p>
+      <p id="3k" style="display: none">
+        You’re likely well aware of your own finitude having lived the large
+        majority of the weeks you’ll see. The psychologist
+        <mark>Erik Erikson</mark> suggests that at this phase of life you focus
+        on the virtue of wisdom. Accept and appreciate your accomplishments so
+        far as a life well lived. Continue to nurture things that will outlast
+        you and mentor others, spend your weeks intentionally on your true
+        priorities, and appreciate novelty in the mundane.
+      </p>
+      <p id="4k" style="display: none">
+        You’re no doubt well aware of your own finitude as one of the lucky ones
+        to live well past four thousand weeks. The psychologist
+        <mark>Erik Erikson</mark> suggests that at this phase of life you focus
+        on the virtue of wisdom. Accept and appreciate your accomplishments so
+        far as a life well lived. Spend every remaining week intentionally on
+        your true priorities and appreciate novelty in the mundane.
+      </p>
+    </section>
+
+    <section>
+      <h2>Productivity is a trap</h2>
+      <p>
+        There are numerous techniques, products, and services to squeeze the
+        most productivity from your week. The problem isn’t that these don’t
+        work, it’s that they <em>do work</em>. And yet paradoxically you only
+        feel busier, more anxious, and somehow emptier as a result.
+      </p>
+      <p>
+        The day will never arrive when you finally have everything under
+        control—when the flood of emails has been contained; when your to-do
+        lists have stopped getting longer; when you’re meeting all your
+        obligations at work and in your home life; when nobody’s angry with you
+        for missing a deadline or dropping the ball; and when the fully
+        optimized person you’ve become can turn, at long last, to the things
+        life is really supposed to be about.
+      </p>
+      <p>
+        Let’s start by admitting defeat: none of this is ever going to happen.
+      </p>
+      <figure>
+        <blockquote>
+          Time feels like an unstoppable conveyer belt, bringing us new tasks as
+          fast as we can dispatch the old ones; and becoming “more productive”
+          just seems to cause the belt to speed up.
+        </blockquote>
+        <figcaption><mark>Edward T. Hall</mark></figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Adopt a limit-embracing attitude</h2>
+      <p>
+        If you truly don’t have time for everything you want to do, or feel you
+        ought to do, or that others are badgering you to do, then, well, you
+        don’t have time—no matter how grave the consequences of failing to do it
+        all might prove to be. So, technically, it’s irrational to feel troubled
+        by an overwhelming to-do list. You’ll do what you can, you won’t do what
+        you can’t, and the tyrannical inner voice insisting that you must do
+        everything is simply mistaken.
+      </p>
+      <p>
+        We rarely stop to consider things so rationally, though, because that
+        would mean confronting the painful truth of our limitations.
+      </p>
+      <p>
+        Surrender to the reality that things just take the time they take, and
+        that you can’t quiet your anxieties by working faster, because it isn’t
+        within your power to force reality’s pace as much as you feel you need
+        to, and because the faster you go, the faster you’ll feel you need to
+        go.
+      </p>
+      <figure>
+        <blockquote>
+          Which of us truly lives on twenty-four hours a day? Which of us is not
+          saying: ‘I shall alter that when I have a little more time?’ We never
+          shall have any more time. We have, and we have always had, all the
+          time there is.
+        </blockquote>
+        <figcaption><mark>Arnold Bennett</mark></figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>How you spend your time is a choice</h2>
+      <p>
+        We are forced to accept that there will always be too much to do; that
+        you can’t make the world run at your preferred speed and so there are
+        tough choices to be made: which balls to let drop, which people to
+        disappoint, which cherished ambitions to abandon, which roles to fail
+        at.
+      </p>
+      <p>
+        Once you truly understand that you’re guaranteed to miss out on almost
+        every experience the world has to offer, the fact that there are so many
+        you still haven’t experienced stops feeling like a problem. Instead, you
+        get to focus on fully enjoying the tiny slice of experiences you
+        actually do have time for. Digging in to a challenging project that
+        can’t be hurried becomes not a trigger for stressful emotions but a
+        bracing act of <em>choice</em>.
+      </p>
+    </section>
+
+    <section>
+      <h2>The importance of&nbsp;rest</h2>
+      <p>
+        A real risk of doing too much is time spent, in attempt to be
+        productive, encroaching on an evening’s rest. Rest as it turns
+        out—whether in the evening, over a weekend, or a vacation—is critical
+        for productive creative work. Its absence can lead to stress, burnout,
+        and counterintuitively overall poor performance despite the extra hours.
+      </p>
+      <p>
+        Though why should vacations or lazy mornings need defending in terms of
+        improved performance? Enjoying leisure for its own sake, which is the
+        whole point of leisure, should not feel as though you’re failing at
+        life. Leisure is not merely an opportunity for recovery and
+        replenishment for the purposes of further work, but for its intrinsic
+        satisfactions.
+      </p>
+      <figure>
+        <blockquote>
+          I have to die. If it is now, well then I die now; if later, then now I
+          will take my lunch, since the hour for lunch has arrived - and dying I
+          will tend to later.
+        </blockquote>
+        <figcaption><mark>Epictetus</mark></figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>The loneliness of temporal sovereignty</h2>
+      <p>
+        Other human beings are always impinging on your time in countless
+        frustrating ways. In an ideal world the only person making decisions
+        about your time is you. This comes at a cost that’s not worth paying.
+      </p>
+      <p>
+        It’s good to have plenty of time, but having all the time in the world
+        isn’t much use if you forced to experience it all on your own. To do
+        countless important things with time: to socialize, go on dates, raise
+        children, launch businesses, start movements; it has to be synchronized
+        with other people. In fact, having large amounts of time but no
+        opportunity to use it collaboratively can be actively unpleasant.
+      </p>
+      <p>
+        We treat our time as something to horde, when it’s better approached as
+        something to share. Even if that means surrendering some of your power
+        to decide exactly what you do with it and when.
+      </p>
+      <figure>
+        <blockquote>
+          However, the two things must be mingled and varied, solitude and
+          joining a crowd: the one will make us long for people and the other
+          for ourselves, and each will be a remedy for the other; solitude will
+          cure our distaste for a crowd, and a crowd will cure our boredom with
+          solitude.
+        </blockquote>
+        <figcaption><mark>Seneca</mark></figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2 style="position: relative; top: 30vh">
+        Ten tools for embracing finitude
+      </h2>
+    </section>
+
+    <section>
+      <div class="secnum">1.</div>
+      <h2>Adopt a fixed volume approach to productivity</h2>
+      <p>
+        Tough choices are inevitable; focus on making them consciously and well.
+      </p>
+      <p>
+        Keep two to-do lists: an “open” one for everything on your plate,
+        doubtlessly nightmarishly long, and “closed” with a fixed number of
+        entries, only moving tasks onto it when previous ones have been
+        completed.
+      </p>
+      <p>
+        You’ll never get through all the tasks on the open list, but you were
+        never going to in any case. The choice to leave them there is hard, but
+        time spent on them is time not spent on the things you chose to focus
+        on.
+      </p>
+      <p>
+        Establish pre-determined time boundaries on your work, and make
+        decisions in light of those limits. If your primary goal is to do what’s
+        required to be finished by 5:30 you’ll be aware of the constraints on
+        your time and motivated to use it wisely.
+      </p>
+    </section>
+
+    <section>
+      <div class="secnum">2.</div>
+      <h2>Serialize,<br />serialize,<br />serialize</h2>
+      <p>
+        Focus on one big project at a time, and see it to completion before
+        moving onto the next.
+      </p>
+      <p>
+        It’s alluring to try to alleviate the anxiety of having too many
+        responsibilities or ambitions by getting started on them all at once,
+        but you’ll make little progress that way. Instead, train yourself to get
+        incrementally better at tolerating that anxiety by consciously
+        postponing everything you possibly can except for one thing.
+      </p>
+      <p>
+        Soon the satisfaction of completing important projects will make that
+        anxiety feel worthwhile, and as you complete them you’ll have less to be
+        anxious about anyway.
+      </p>
+    </section>
+
+    <section>
+      <div class="secnum">3.</div>
+      <h2>Strategic underachievement</h2>
+      <p>
+        Simply because your time is finite, you’ll inevitably underachieve at
+        something. When you can’t do it all, you can feel ashamed and give up.
+        When you decide in advance what to fail at, you remove the sting of
+        shame.
+      </p>
+      <p>
+        Nominate in advance whole areas of life in which you won’t expect
+        excellence from yourself. Instead focus that time more effectively, and
+        you won’t be surprised when you fail at what you planned to fail at all
+        along.
+      </p>
+    </section>
+
+    <section>
+      <div class="secnum">4.</div>
+      <h2>Celebrate wins</h2>
+      <p>
+        The to-do list will never be finished. Inbox zero will inevitably
+        refill. There’s an unhelpful assumption that you begin each morning with
+        a productivity debt that you must pay off with hard work to achieve a
+        zero-balance by evening.
+      </p>
+      <p>
+        Keep a “done” list which starts empty and fills up over the day. You
+        could have spent the day doing nothing remotely constructive, and look
+        what you did instead. Lower the bar for what gets to count as an
+        accomplishment; small wins accrue.
+      </p>
+    </section>
+
+    <section>
+      <div class="secnum">5.</div>
+      <h2>Consolidate care</h2>
+      <p>
+        The attention economy demands urgency, bringing a litany of demands for
+        your care every day. Consciously choose your battles in industry,
+        charity, activism, and politics.
+      </p>
+      <p>
+        To make a real difference, you must focus your finite capacity for care.
+      </p>
+    </section>
+
+    <section>
+      <div class="secnum">6.</div>
+      <h2>Embrace boring & single-purpose technology</h2>
+      <p>
+        Modern digital devices offer distraction to a place where painful human
+        limitations do not apply; you need never feel bored or constrained in
+        your freedom of action—which isn’t the case when it comes to work that
+        matters.
+      </p>
+      <p>
+        Combat this by making your devices boring. Remove apps that distract
+        (even consider Slack or Email). Switch your screen to grayscale. Use
+        time-limiting reminders.
+      </p>
+      <p>
+        Chose single-purpose devices like an e-reader where it’s tedious and
+        awkward to do anything but read. If distracting apps are only a swipe
+        away they’ll prove impossible to resist when the first twinge of boredom
+        or difficulty of focus arises.
+      </p>
+    </section>
+
+    <section>
+      <div class="secnum">7.</div>
+      <h2>Seek novelty in the&nbsp;mundane</h2>
+      <p>
+        The fewer weeks we have left the faster we seem to lose them. The
+        likeliest explanation for this phenomenon is that our brains encode the
+        passing of time on the basis of how much information we process in any
+        given interval.
+      </p>
+      <p>
+        Cramming your life with novel experiences does work, but can also lead
+        to existential overwhelm and is also impractical, especially if you have
+        a job or children.
+      </p>
+      <p>
+        Alternatively pay more attention to every moment no matter how mundane.
+        Plunge into the life you already have with twice the intensity and your
+        life will feel twice as full and will be remembered as lasting twice as
+        long. Meditation, going on unplanned walks, photography, journaling,
+        anything that draws your attention more fully to the present.
+      </p>
+    </section>
+
+    <section>
+      <div class="secnum">8.</div>
+      <h2>Be a researcher in relationships</h2>
+      <p>
+        When presented with a challenging or boring moment with another person,
+        deliberately adopt an attitude of curiosity in which your goal isn’t to
+        achieve any particular outcome or explain your position but to figure
+        out who this human being is who we’re with.
+      </p>
+      <p>
+        This curiosity is well suited to the unpredictability of life with
+        others because it can be satisfied by their behaving in ways you like or
+        dislike whereas the stance of demanding a certain result is frustrated
+        each time things fail to go your way.
+      </p>
+    </section>
+
+    <section>
+      <div class="secnum">9.</div>
+      <h2>Cultivate instantaneous generosity</h2>
+      <p>
+        Whenever a generous impulse arises your mind: to give money, to check in
+        on a friend, send an email praising someone’s work, act on that impulse
+        right away. If you put it off for whatever reason, you’ll likely not get
+        back to it. The only acts of generosity that count are the ones you’re
+        actually making.
+      </p>
+      <p>
+        People are social creatures, and generous action reliably makes us feel
+        much happier.
+      </p>
+    </section>
+
+    <section>
+      <div class="secnum">10.</div>
+      <h2>Practice doing <mark>nothing</mark></h2>
+      <p>
+        When it comes to the challenge of using your four thousand weeks well,
+        the capacity to do nothing is indispensable. If you can’t bear the
+        discomfort of not acting you’re far more likely to make poor choices
+        with your time simply to feel as if you’re acting. Calm down, gain
+        autonomy over your choices, and make better ones.
+      </p>
+      <h3>Do nothing meditation</h3>
+      <ol>
+        <li>Set a timer, even for only five minutes.</li>
+        <li>Sit in a chair and then stop trying to do anything.</li>
+        <li>
+          Every time you notice you’re doing something, including thinking or
+          focusing on your breathing, stop doing it.
+        </li>
+        <li>
+          If you notice you’re criticizing yourself inwardly for doing things
+          well&hellip; that’s a thought too so stop doing that.
+        </li>
+        <li>Keep on stopping until the timer goes off.</li>
+      </ol>
+    </section>
+    <footer>
+      <hr />
+      <p>
+        Thanks for reading this tribute to
+        <a href="https://amzn.to/3GnJlR9"
+          ><cite><mark>Four Thousand Weeks</mark></cite></a
+        >, by Oliver Burkeman.
+      </p>
+      <p>
+        This page is comprised of themes and excerpts from the book. If you’ve
+        scrolled this far you should absolutely read it in its entirety.
+      </p>
+      <p>
+        Set in
+        <a href="https://github.com/clauseggers/Playfair">Playfair 2.0</a>
+        by <mark>Claus Eggers</mark>
+      </p>
+      <p>
+        Made by
+        <a href="https://leebyron.com"><mark>Lee Byron</mark></a>
+        with &hearts; in San Francisco.
+      </p>
+      <aside class="endMark">✌︎</aside>
+    </footer>
+  </body>
+</html>
